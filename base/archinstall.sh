@@ -262,6 +262,7 @@ setup_tpm_in_chroot() {
         arch-chroot /mnt bash -c '
             sed -i "s/^MODULES=.*/MODULES=(tpm tpm_tis tpm_crb)/" /etc/mkinitcpio.conf
             sed -i "s/^HOOKS=.*/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt lvm2 filesystems fsck)/" /etc/mkinitcpio.conf
+            echo 'KEYMAP=us' > /etc/vconsole.conf
             mkinitcpio -P
         '
         
